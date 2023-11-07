@@ -1,0 +1,83 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Hello World</h1>
+
+{% if code %}
+
+<pre>
+<code class="line-numbers language-{{ lang }}">
+    {{ code }}
+</code>
+</pre>
+<br>
+<br>
+<br>
+
+<form method="POST" action="{% url 'home' %">
+    {% csrf_token %}
+<div class="mb-3">
+  <textarea class="form-control" name="code" rows="3" placeholder="Have AI fix my code"></textarea>
+<br>
+
+
+    <select class="form-select" name="lang">
+  <option selected>Select Programming language</option>
+
+        {% for item in languages %}
+  <option value="{{ item }}">{{ item }}</option>
+        {% endfor %}
+</select>
+<br>
+<br>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+</div>
+
+
+</form>
+
+{% else %}
+
+<pre>
+<code class="line-numbers language-python">if 2 > 3:
+    print("wsup")
+else:
+    print("stupid")
+</code>
+</pre>
+<br>
+<br>
+<br>
+
+<form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+<div class="mb-3">
+  <textarea class="form-control" name="code" rows="3" placeholder="Have AI fix my code"></textarea>
+<br>
+
+
+    <select class="form-select" name="lang">
+  <option selected>Select Programming language</option>
+
+        {% for item in languages %}
+  <option value="{{ item }}">{{ item }}</option>
+        {% endfor %}
+</select>
+<br>
+<br>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+</div>
+
+
+</form>
+
+{% endif %}
+
+
+{% endblock %}
