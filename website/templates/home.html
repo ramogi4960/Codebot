@@ -16,15 +16,17 @@
 <br>
 <br>
 
-<form method="POST" action="{% url 'home' %">
+<form method="POST" action="{% url 'home' %}">
     {% csrf_token %}
 <div class="mb-3">
-  <textarea class="form-control" name="code" rows="3" placeholder="Have AI fix my code"></textarea>
+  <textarea class="form-control" name="code" rows="3" placeholder="Have AI fix my code">
+      {{ code }}
+  </textarea>
 <br>
 
 
     <select class="form-select" name="lang">
-  <option selected>Select Programming language</option>
+  <option selected>Select Programming Language</option>
 
         {% for item in languages %}
   <option value="{{ item }}">{{ item }}</option>
@@ -61,7 +63,7 @@ else:
 
 
     <select class="form-select" name="lang">
-  <option selected>Select Programming language</option>
+  <option selected>Select Programming Language</option>
 
         {% for item in languages %}
   <option value="{{ item }}">{{ item }}</option>

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 
 
 def home(request):
@@ -18,5 +19,10 @@ def home(request):
             "lang": lang,
             "code": code,
         }
+        if context["lang"] == "Select Programming Language":
+            messages.success(request, context["lang"])
+            return render(request, "home.html", context)
+
+        return render(request, "home.html", context)
 
     return render(request, "home.html", context)
